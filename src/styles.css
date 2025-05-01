@@ -18,3 +18,8 @@ app-root{
 .contenedor{
     background-color: #C4C3C1;
 }
+
+app-footer{
+    background-color: #000277;
+    color: white;
+}
