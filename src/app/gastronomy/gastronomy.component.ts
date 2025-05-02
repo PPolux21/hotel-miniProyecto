@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Restaurant } from '../model/restaurant';
 import { RestaurantServiceService } from '../services/restaurant-service.service';
 import { CommonModule } from '@angular/common';
+import 'animate.css'
 
 @Component({
   selector: 'app-gastronomy',

@@ -4,6 +4,7 @@ import {MatCardModule} from '@angular/material/card';
 import { RoomsServiceService } from "../services/rooms-service.service";
 import { MatListModule } from '@angular/material/list';
 import { Room } from "../model/rooms";
+import 'animate.css'
 
 @Component({
   selector: 'app-rooms',

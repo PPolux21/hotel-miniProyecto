@@ -44,3 +44,25 @@
     object-fit: cover;
 }
   
+.faq-section h2 {
+    font-weight: bold;
+    color: #212529;
+  }
+  
+.faq {
+    background-color: #f2efe7;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+  
+mat-panel-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: black;
+}
+
+.answer{
+    color: black;
+}
+  
