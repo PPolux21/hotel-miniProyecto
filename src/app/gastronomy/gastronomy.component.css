@@ -19,14 +19,23 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
-.light-theme{
-    background-color: aliceblue;
-    border-color: burlywood;
-    display: flex;
-    flex-direction: column;
+.contRest{
+    max-width: 80dvw;
+    border: 1px solid #f2f2f2;
+    background-color: #f4f4f4;
 }
 
-.reserv-button{
-    color: #ffffff !important;
-    background-color: #a67c00 !important;
+.contenedorImg{
+    width: 700px;
+    object-position: center;
+    object-fit: contain;
+}
+
+.contenedorImg img{
+    width: 100%;
+    height: 100%;
+}
+
+.contenedorTexto{
+    width: 70rem;
 }

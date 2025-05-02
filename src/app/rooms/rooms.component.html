@@ -1,1 +1,49 @@
-<p>rooms works!</p>
+<section class="presentacion position-relative">
+    <img src="img/fondo-habitacion.jpg" class="img-fondo w-100" alt="Habitaciones">
+  
+    <div class="texto-cuadro position-absolute top-50 end-0 translate-middle-y p-5 rounded-4 me-5">
+      <h2 class="mb-4 display-5 fw-bold" style="color: gold;">Habitaciones</h2>
+      <p class="fs-5 mb-0">
+        Sumérgete en el descanso que mereces. Nuestras habitaciones han sido cuidadosamente diseñadas para ofrecer un equilibrio
+        perfecto entre confort y elegancia. Con vistas espectaculares, mobiliario de alta calidad y detalles que inspiran serenidad, 
+        cada espacio es un refugio pensado para que te desconectes del mundo y te conectes contigo mismo. Ya sea que viajes por placer o negocios, 
+        aquí encontrarás el lugar ideal para recargar cuerpo y mente.
+      </p>
+    </div>
+</section>
+
+<section class="m-5">
+  <div class="card-group row row-cols-1 row-cols-lg-3 g-4">
+      @for (room of rooms; track room; let i = $index) {
+      <div class="col">
+        <mat-card class="card h-100 light-theme" appearance="outlined">
+          <img mat-card-image [src]="room.imagen" class="card-img-top" alt="{{room.tipo}}">
+          <mat-card-header>
+            <mat-card-title class="card-title text-bold"><strong>{{room.tipo}}</strong></mat-card-title>
+          </mat-card-header>
+          <mat-card-content style="flex: 1 1 auto;">
+            <p class="card-text">{{room.descripcion}}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <a mat-flat-button class="reserv-button" target="_blank">Reservar</a>
+          </mat-card-actions>
+        </mat-card>        
+      </div>
+      }
+  </div>
+</section>
+
+<section>
+  <mat-list>
+    <mat-list-item>
+      <i class="fa-solid fa-wifi text-dark"></i>
+      <span matLine class="text-dark">Wifi</span>
+    </mat-list-item>
+    <mat-list-item>
+      <span matLine class="text-dark">Mi cuenta</span>
+    </mat-list-item>
+    <mat-list-item>
+      <span matLine class="text-dark">Configuración</span>
+    </mat-list-item>
+  </mat-list>  
+</section>
