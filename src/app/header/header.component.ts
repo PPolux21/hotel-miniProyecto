@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import 'animate.css'
 
 @Component({
@@ -8,5 +9,9 @@ import 'animate.css'
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  constructor(private router: Router){}
 
+  toLogin(){
+    this.router.navigate(['/login']);
+  }
 }

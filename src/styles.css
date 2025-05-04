@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "app/themes/burlywoodtheme.css";
 
 html, body { 
     height: 100%;
@@ -17,6 +18,12 @@ app-root{
 
 .contenedor{
     background-color: #C4C3C1;
+}
+
+app-navbar{
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 app-footer{

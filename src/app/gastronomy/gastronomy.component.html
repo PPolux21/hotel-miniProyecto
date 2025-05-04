@@ -12,26 +12,26 @@
 </section>
 
 <section class="d-flex flex-column align-items-center">
-@for (restaurant of restaurants; track restaurant; let i = $index) {
-  <div
-    class="d-flex justify-content-center align-items-center p-3 gap-3 m-3 rounded rounded-3 contRest"
-    [ngClass]="{
-      'flex-row-reverse': i % 2 === 1,
-      'animate__animated': true,
-      'animate__backInLeft': i % 2 === 0,
-      'animate__backInRight': i % 2 === 1
-    }"
-  >
-    <div class="contenedorImg">
-      <img class="rounded" [src]="restaurant.imagen" [alt]="restaurant.nombre" />
+  @for (restaurant of restaurants; track restaurant; let i = $index) {
+    <div
+      class="d-flex justify-content-center align-items-center p-3 gap-3 m-3 rounded rounded-3 contRest"
+      [ngClass]="{
+        'flex-row-reverse': i % 2 === 1,
+        'animate__animated': true,
+        'animate__backInLeft': i % 2 === 0,
+        'animate__backInRight': i % 2 === 1
+      }"
+    >
+      <div class="contenedorImg">
+        <img class="rounded" [src]="restaurant.imagen" [alt]="restaurant.nombre" />
+      </div>
+      <div class="contenedorTexto mx-5">
+        <h3 [innerHTML]="restaurant.nombre" class="text-center"></h3>
+        <p [innerHTML]="restaurant.descripcion"></p>
+        @for (horario of restaurant.horarios; track horario) {
+          <p [innerHTML]="horario" class="text-center"></p>
+        }
+      </div>
     </div>
-    <div class="contenedorTexto mx-5">
-      <h3 [innerHTML]="restaurant.nombre" class="text-center"></h3>
-      <p [innerHTML]="restaurant.descripcion"></p>
-      @for (horario of restaurant.horarios; track horario) {
-        <p [innerHTML]="horario" class="text-center"></p>
-      }
-    </div>
-  </div>
-}
+  }
 </section>

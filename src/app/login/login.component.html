@@ -1,0 +1,40 @@
+<section class="presentacion position-relative">
+    <img src="img/fondo-gastronomia.jpg" class="img-fondo w-100" alt="Habitaciones">
+      
+    <div class="texto-cuadro position-absolute start-50 top-0 bottom-0 translate-middle-x p-5 rounded-4 mt-4 mb-4">
+        <h2 class="mb-4 display-5 fw-bold animate__animated animate__lightSpeedInRight"  style="color: gold;">Inicio de sesion</h2>
+        <p class="fs-5 mb-0 animate__animated animate__rotateInUpLeft ">
+            Bienvenido al inicio de sesion, aqui inicias sesion XD.
+        </p>
+    </div>
+</section>
+    
+<section class="d-flex justify-content-center my-5">
+    <div class="example-container contenedorLogin d-flex flex-column align-items-center">
+        <i class="fa-solid fa-user"></i>
+        <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input
+                matInput
+                required
+            />
+            @if (email.invalid) {
+                <mat-error>{{errorMessage()}}</mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide() ? 'password' : 'text'" />
+            <button
+            mat-icon-button
+            matSuffix
+            (click)="clickEvent($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide()"
+            >
+            <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-flat-button>Iniciar Sesión</button>
+    </div>
+</section>
