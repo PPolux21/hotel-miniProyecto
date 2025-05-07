@@ -6,9 +6,8 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <video class="d-block w-70" autoplay muted loop>
-            <source src="video/Video.mp4" type="video/mp4">
-        </video>
+        <iframe class="d-block w-100 h-100" [src]="videoCode | domseguro:'https://www.youtube.com/embed/'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        
       </div>
       <div class="carousel-item">
         <img src="img/entrada.jpg" class="d-block w-100" alt="...">
@@ -69,48 +68,14 @@
 <section class="faq-section my-5 px-4">
   <h2 class="text-center mb-4">Preguntas Frecuentes</h2>
   <mat-accordion multi>
-    <mat-expansion-panel class="faq animate__animated animate__fadeInUp">
-      <mat-expansion-panel-header>
-        <mat-panel-title>¿A qué hora es el check-in y check-out?</mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="answer">El check-in es a partir de las 3:00 PM y el check-out a las 12:00 PM.</p>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="faq animate__animated animate__fadeInUp">
-      <mat-expansion-panel-header>
-        <mat-panel-title>¿A qué hora es el check-in y check-out?</mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>El check-in es a partir de las 3:00 PM y el check-out a las 12:00 PM.</p>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="faq animate__animated animate__fadeInUp">
-      <mat-expansion-panel-header>
-        <mat-panel-title>¿A qué hora es el check-in y check-out?</mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>El check-in es a partir de las 3:00 PM y el check-out a las 12:00 PM.</p>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="faq animate__animated animate__fadeInUp">
-      <mat-expansion-panel-header>
-        <mat-panel-title>¿A qué hora es el check-in y check-out?</mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>El check-in es a partir de las 3:00 PM y el check-out a las 12:00 PM.</p>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="faq animate__animated animate__fadeInUp">
-      <mat-expansion-panel-header>
-        <mat-panel-title>¿A qué hora es el check-in y check-out?</mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>El check-in es a partir de las 3:00 PM y el check-out a las 12:00 PM.</p>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="faq animate__animated animate__fadeInUp">
-      <mat-expansion-panel-header>
-        <mat-panel-title>¿A qué hora es el check-in y check-out?</mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>El check-in es a partir de las 3:00 PM y el check-out a las 12:00 PM.</p>
-    </mat-expansion-panel>
-    
+    @for (lista of preguntas; track lista) {
+      <mat-expansion-panel class="faq animate__animated animate__fadeInUp">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{lista.pregunta}}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="answer" [innerHTML]="lista.respuesta"></p>
+      </mat-expansion-panel>
+    }
   </mat-accordion>
 </section>
 
