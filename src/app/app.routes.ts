@@ -13,7 +13,18 @@ export const routes: Routes = [
     {path: 'gastronomy', component: GastronomyComponent},
     {path: 'about', component: AboutComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'hotel-services', component:HotelServicesComponent},
-    {path: 'reservation', component:ReservationComponent},
+    {path: 'hotel-services', component: HotelServicesComponent},
+    {path: 'reservation', component: ReservationComponent},
+    {path: 'reservation/:room', component: ReservationComponent},
+    {path: ':user', children: [
+        {path: 'home', component: HomeComponent},
+        {path: 'rooms', component: RoomsComponent},
+        {path: 'gastronomy', component: GastronomyComponent},
+        {path: 'about', component: AboutComponent},
+        {path: 'login', component: LoginComponent},         /* CAMBIAR A UN COMPONENTE PARA QUE EL ADMIN ACCEDA AL LOCALSTORAGE */
+        {path: 'hotel-services', component: HotelServicesComponent},
+        {path: 'reservation', component: ReservationComponent},
+        {path: 'reservation/:room', component: ReservationComponent},
+    ]},
     {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];

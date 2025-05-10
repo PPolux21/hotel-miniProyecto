@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,5 +8,15 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  // usuario: string = "";
 
+  // constructor(public activatedRoute: ActivatedRoute){
+  //   this.activatedRoute.params.subscribe(params => {
+  //     this.usuario
+  //   });
+  // }
+
+  // getRoutes(){
+  //   return this.usuario ? [this.usuario, 'rooms'] : ['rooms'];
+  // }
 }

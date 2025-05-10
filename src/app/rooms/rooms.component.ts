@@ -5,10 +5,11 @@ import { RoomsServiceService } from "../services/rooms-service.service";
 import { MatListModule } from '@angular/material/list';
 import { Room } from "../model/rooms";
 import 'animate.css'
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-rooms',
-  imports: [MatCardModule, MatButtonModule,MatListModule],
+  imports: [MatCardModule, MatButtonModule, MatListModule, RouterModule],
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.css'
 })

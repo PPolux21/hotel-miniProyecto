@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,7 +11,8 @@ import Swal from 'sweetalert2';
   styleUrl: './reservation.component.css'
 })
 export class ReservationComponent {
-  imagenHabitacion: string | null = null; 
+  imagenHabitacion: string | null = null;
+  opcionHabitacion: number = -1;
 
   templateData = {
     nombre: '',
@@ -40,6 +42,17 @@ export class ReservationComponent {
     { nombre: 'Golden Vista Frontal al Mar', precio: 4000, imagen: '/img/Golden Vista Frontal al Mar.jpg' }
   ];
 
+  constructor(public activatedRoute: ActivatedRoute){
+    this.activatedRoute.params.subscribe(params => {
+      this.opcionHabitacion = params['room'];
+      if(this.opcionHabitacion == undefined){ 
+        this.opcionHabitacion = -1 
+      }else{
+        this.templateData.tipo = this.tiposHabitacion[this.opcionHabitacion].nombre;
+      }
+    });
+  }
+
   guardarTemplate() {
     localStorage.setItem('reservacionTemplate', JSON.stringify(this.templateData));
     Swal.fire('¡Reservación registrada!', 'Los datos se guardaron correctamente', 'success');
@@ -50,6 +63,14 @@ export class ReservationComponent {
     const hoy = new Date();
     const fechaIngresada = new Date(this.templateData.fecha);
     return fechaIngresada < new Date(hoy.toDateString());
+  }
+
+  fechaLejana():boolean {
+    if (!this.templateData.fecha) return false;
+    const fechaFutura = new Date();
+    fechaFutura.setDate(fechaFutura.getDate() + 365);
+    const fechaIngresada = new Date(this.templateData.fecha);
+    return fechaIngresada > new Date(fechaFutura.toDateString());
   }
 
   actualizarImagen() {

@@ -14,7 +14,7 @@ export const rooms: Room[] = [
     {
         tipo: "Estándar King con Terraza",
         descripcion: "Una habitación estándar con terraza y 1 cama king size es perfecta para 2 personas. Ofrece comodidad y un espacio al aire libre para relajarse.",
-        imagen: "img/Estandar Doble.jpg"
+        imagen: "img/Estandar King con Terraza.jpg"
     },
     {
         tipo: "Estándar Doble con Terraza",

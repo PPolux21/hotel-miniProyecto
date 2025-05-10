@@ -13,7 +13,7 @@
         <label class="form-label">Tipo de habitación:</label>
         <select class="form-select mb-2" name="tipo" [(ngModel)]="templateData.tipo" required #tipo="ngModel" (change)="actualizarImagen()">
           <option value="" disabled selected>Seleccione tipo</option>
-          @for (hab of tiposHabitacion; track hab.nombre) {
+          @for (hab of tiposHabitacion; track hab.nombre; let i = $index) {
             <option [value]="hab.nombre">{{ hab.nombre }}</option>
           }
         </select>
@@ -49,6 +49,9 @@
         <input class="form-control mb-2" type="date" name="fecha" [(ngModel)]="templateData.fecha" required #fecha="ngModel">
         @if (fechaInvalida()) {
           <div class="text-danger mb-3">La fecha no puede ser anterior al día actual.</div>
+        }
+        @if (fechaLejana()) {
+          <div class="text-danger mb-3">La fecha es muy lejana.</div>
         }
 
         <p><strong>Total estimado:</strong> {{ totalEstimado }} MXN</p>
