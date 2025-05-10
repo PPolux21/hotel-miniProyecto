@@ -1,0 +1,80 @@
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
+
+@Component({
+  selector: 'app-reservation',
+  imports: [FormsModule,ReactiveFormsModule],
+  templateUrl: './reservation.component.html',
+  styleUrl: './reservation.component.css'
+})
+export class ReservationComponent {
+  imagenHabitacion: string | null = null; 
+
+  templateData = {
+    nombre: '',
+    tipo: '',
+    noches: null,
+    personas: 1,
+    desayuno: false,
+    fecha: '',
+    extras: {} as { [nombre: string]: boolean }
+  };
+
+  serviciosExtras = [
+    { nombre: 'Desayuno', precio: 100 },
+    { nombre: 'Acceso al spa', precio: 200 },
+    { nombre: 'Estacionamiento privado', precio: 50 },
+    { nombre: 'Transporte al aeropuerto', precio: 300 },
+    { nombre: 'Cena romántica', precio: 400 }
+  ];
+
+  tiposHabitacion = [
+    { nombre: 'Estandar King', precio: 500, imagen: '/img/Estandar King.jpg' },
+    { nombre: 'Estandar Doble', precio: 800, imagen: '/img/Estandar Doble.jpg' },
+    { nombre: 'Estandar King con Terraza', precio: 1500, imagen: '/img/Estandar King con Terraza.jpg' },
+    { nombre: 'Estandar Doble con Terraza', precio: 1000, imagen: '/img/Estandar Doble con Terraza.jpg' },
+    { nombre: 'King vista al mar', precio: 2000, imagen: '/img/King Vista al Mar.jpg' },
+    { nombre: 'Doble vista al mar', precio: 3500, imagen: '/img/Doble vista al mar.jpg' },
+    { nombre: 'Golden Vista Frontal al Mar', precio: 4000, imagen: '/img/Golden Vista Frontal al Mar.jpg' }
+  ];
+
+  guardarTemplate() {
+    localStorage.setItem('reservacionTemplate', JSON.stringify(this.templateData));
+    Swal.fire('¡Reservación registrada!', 'Los datos se guardaron correctamente', 'success');
+  }
+
+  fechaInvalida(): boolean {
+    if (!this.templateData.fecha) return false;
+    const hoy = new Date();
+    const fechaIngresada = new Date(this.templateData.fecha);
+    return fechaIngresada < new Date(hoy.toDateString());
+  }
+
+  actualizarImagen() {
+    const tipo = this.tiposHabitacion.find(t => t.nombre === this.templateData.tipo);
+    this.imagenHabitacion = tipo ? tipo.imagen : null;
+  }
+
+  get totalEstimado(): number {
+    const noches = this.templateData.noches ?? 0;
+    const habitacion = this.tiposHabitacion.find(t => t.nombre === this.templateData.tipo);
+    if (!habitacion) return 0;
+
+    let total = habitacion.precio * noches;
+
+    if (this.templateData.personas >= 2) {
+      total += (this.templateData.personas - 2) * 500; 
+    }
+
+    for (const extra of this.serviciosExtras) {
+      if (this.templateData.extras[extra.nombre]) {
+        total += extra.precio * noches;
+      }
+    }
+
+    return total;
+  }
+  
+}

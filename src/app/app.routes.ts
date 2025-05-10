@@ -5,6 +5,7 @@ import { GastronomyComponent } from './gastronomy/gastronomy.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { HotelServicesComponent } from './hotel-services/hotel-services.component';
+import { ReservationComponent} from './reservation/reservation.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -13,5 +14,6 @@ export const routes: Routes = [
     {path: 'about', component: AboutComponent},
     {path: 'login', component: LoginComponent},
     {path: 'hotel-services', component:HotelServicesComponent},
+    {path: 'reservation', component:ReservationComponent},
     {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
