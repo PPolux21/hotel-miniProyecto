@@ -66,3 +66,12 @@ mat-panel-title {
     color: black;
 }
   
+.reactive-form{
+    background-color: #f2efe7;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+.reactive-item{
+    width: 50%;
+}
