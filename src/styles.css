@@ -16,7 +16,7 @@ app-root{
     min-height: 100dvh;
 }
 
-.contenedor{
+.contenedor, .contenedor *{
     background-color: #C4C3C1;
 }
 
@@ -26,7 +26,7 @@ app-navbar{
     z-index: 1;
 }
 
-app-footer{
+app-footer, app-footer *{
     background-color: #000277;
     color: white;
 }

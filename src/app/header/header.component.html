@@ -7,6 +7,6 @@
     <img class="animate__animated animate__lightSpeedInRight" src="img/logoGolden.png">
     <!-- <h1 class="metalico animate__animated animate__rollIn">Hotel los Tres Vagos</h1> -->
     <button class="d-flex flex-column" (click)="toLogin()">
-        <i class="fa-solid fa-right-to-bracket"></i>Iniciar Sesión
+        <i class="fa-solid" [ngClass]="{'fa-right-to-bracket': !iconLogged, 'fa-circle-user': iconLogged}"></i>{{nombreUsuario}}
     </button>
 </header>

@@ -62,15 +62,19 @@ export class LoginComponent {
 
   logIn(){
     let aux = false;
-    this.admins.forEach(admin => {
+    let user = "user";
+    this.admins.forEach((admin, index) => {
       if (admin.email == this.form.value.email 
         && admin.password == this.form.value.password) {
         aux = true;
         localStorage.setItem('admin', JSON.stringify(admin));
 
         this.showAlert();
+
+        user = user + index.toString();
+        console.log(index);
         
-        this.router.navigate(['/home']);
+        this.router.navigate([user, 'home']);
       }
     });
 

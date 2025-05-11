@@ -8,15 +8,15 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  // usuario: string = "";
+  usuario: string = "";
 
-  // constructor(public activatedRoute: ActivatedRoute){
-  //   this.activatedRoute.params.subscribe(params => {
-  //     this.usuario
-  //   });
-  // }
-
-  // getRoutes(){
-  //   return this.usuario ? [this.usuario, 'rooms'] : ['rooms'];
-  // }
+  constructor(public activatedRoute: ActivatedRoute){
+    this.activatedRoute.params.subscribe(params => {
+      this.usuario = params['user'];
+    });
+  }
+  
+  getRoutes(destino: string): any[]{
+    return this.usuario !== undefined ? ["/" + this.usuario, destino] : ["/" + destino];
+  }
 }

@@ -25,7 +25,8 @@
           <p class="card-text">{{room.descripcion}}</p>
         </mat-card-content>
         <mat-card-actions>
-          <a mat-flat-button class="reserv-button" [routerLink]="['/reservation', i]">Reservar</a>
+          <a mat-flat-button class="reserv-button" [routerLink]="getRoutes('reservation', i)">Reservar</a>
+          <!-- <a mat-flat-button class="reserv-button" [routerLink]="['/reservation', i]">Reservar</a> -->
         </mat-card-actions>
       </mat-card>        
     </div>
