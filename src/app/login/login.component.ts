@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
+import { Admins } from '../model/admins';
+import { AdminsServiceService } from '../services/admins-service.service';
 
 @Component({
   selector: 'app-login',
@@ -21,27 +23,15 @@ export class LoginComponent {
   errorMessage = signal('');
   hide = signal(true);
 
-  admins = [
-    {
-      email: 'jose_luis@tresvagos.com',
-      password: 'wenas'
-    },
-   {
-      email: 'luis_alberto@tresvagos.com',
-      password: 'wenas'
-    },
-    {
-      email: 'brandon@tresvagos.com',
-      password: 'wenas'
-    }
-  ];
+  admins: Admins[] = [];
   succesLogIn = true;
 
-  constructor(private fb: FormBuilder, private router: Router){
+  constructor(private fb: FormBuilder, private router: Router, private adminService: AdminsServiceService){
     this.form = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this.admins = this.adminService.getAdmins();
   }
   
   clickEvent(event: MouseEvent) {

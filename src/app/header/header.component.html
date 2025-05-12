@@ -6,7 +6,14 @@
     <div></div>
     <img class="animate__animated animate__lightSpeedInRight" src="img/logoGolden.png">
     <!-- <h1 class="metalico animate__animated animate__rollIn">Hotel los Tres Vagos</h1> -->
-    <button class="d-flex flex-column" (click)="toLogin()">
-        <i class="fa-solid" [ngClass]="{'fa-right-to-bracket': !iconLogged, 'fa-circle-user': iconLogged}"></i>{{nombreUsuario}}
+    <button class="d-flex flex-column align-items-center" (click)="toLogin()">
+        @if (iconLogged) {
+            <div class="d-flex flex-column userImage">
+                <img [src]="imgUsuario" alt="{{nombreUsuario}}">
+            </div>
+            {{nombreUsuario}}
+        }@else {
+            <i class="fa-solid" [ngClass]="{'fa-right-to-bracket': !iconLogged, '': iconLogged}"></i>{{nombreUsuario}}
+        }
     </button>
 </header>

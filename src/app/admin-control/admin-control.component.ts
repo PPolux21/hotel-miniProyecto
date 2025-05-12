@@ -5,6 +5,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
+import { AdminsServiceService } from '../services/admins-service.service';
 
 @Component({
   selector: 'app-admin-control',
@@ -13,19 +14,20 @@ import Swal from 'sweetalert2';
   styleUrl: './admin-control.component.css'
 })
 export class AdminControlComponent {
-  usernames = ["Jose Luis", "Luis Alberto", "Brandon"];
   userString: string = "";
   userIndex!: number;
   nombreUsuario: string = "";
+  imagenUsuario: string = "";
 
   reserv;
   subs;
 
-  constructor(public activatedRoute: ActivatedRoute, private router: Router){
+  constructor(public activatedRoute: ActivatedRoute, private router: Router, private adminService: AdminsServiceService){
     this.activatedRoute.parent?.params.subscribe(params => {
       this.userString = params['user'];
       this.userIndex = parseInt(this.userString.replace(/\D/g, ''), 10);
-      this.nombreUsuario = this.usernames[this.userIndex];
+      this.nombreUsuario = this.adminService.getAdminUsername(this.userIndex);
+      this.imagenUsuario = this.adminService.getAdminImage(this.userIndex);
     });
 
     this.reserv = localStorage.getItem('reservacionTemplate');

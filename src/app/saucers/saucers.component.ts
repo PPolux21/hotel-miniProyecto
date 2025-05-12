@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiServiceService } from '../services/api-service.service';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-saucers',
-  imports: [FormsModule, RouterOutlet],
+  imports: [FormsModule],
   templateUrl: './saucers.component.html',
   styleUrl: './saucers.component.css'
 })
