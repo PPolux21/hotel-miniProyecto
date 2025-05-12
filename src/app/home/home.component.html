@@ -79,4 +79,73 @@
   </mat-accordion>
 </section>
 
-  
+<section>
+  <h2 class="text-center ">Únete ahora</h2>
+  <p class="text-muted text-center mb-4">Registrate para recibir promociones y notificaciones de eventos especiales.</p>
+  <div class="container w-80 d-flex mb-5 py-4 reactive-form">
+    <form class="w-100 mx-4" [formGroup]="subsForm">
+      <div>
+        <mat-form-field class="w-100">
+          <mat-label>Nombre</mat-label>
+          <input type="text" matInput [formControl]="nameControl" placeholder="Ej. Brandon Ruiz">
+          @if (nameControl.hasError('maxlength')) {
+            <mat-error>Nombre demasiado largo</mat-error>
+          }
+          @if (nameControl.hasError('required')) {
+            <mat-error>Nombre es <strong>necesario</strong></mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+          <mat-label>Correo</mat-label>
+          <input type="email" matInput [formControl]="emailControl" placeholder="Ex. brandon@tresvagos.com">
+          @if (emailControl.hasError('email')) {
+            <mat-error>Escribir direccion de correo válida</mat-error>
+          }
+          @if (emailControl.hasError('required')) {
+            <mat-error>Correo es <strong>necesario</strong></mat-error>
+          }
+        </mat-form-field>
+
+        <mat-checkbox [formControl]="enableRoomsControl">Me gustaría recibir información sobre ofertas de un habitación específica.</mat-checkbox>
+
+        <mat-form-field class="ms-5 reactive-item mt-2">
+          <mat-label>Habitacion</mat-label>
+          <mat-select [formControl]="roomsControl" [disabled]="!enableRoomsControl.value">
+            @for (hab of habitaciones; track hab) {
+              <mat-option [value]="hab.tipo">{{hab.tipo}}</mat-option>
+            }
+          </mat-select>
+          @if (roomsControl.hasError('required')) {
+            <mat-error><strong>Seleccione</strong> una habitacion</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-checkbox [formControl]="enableDateControl">¿Te interesa recibir información para una fecha en particular?</mat-checkbox>
+
+        <mat-form-field class="ms-5 reactive-item">
+          <mat-label>Fecha</mat-label>
+          <mat-date-range-input [rangePicker]="picker" [dateFilter]="tomorrowOnwards">
+            [matDatepickerFilter]="tomorrowOnwards"
+            <input matStartDate [formControl]="dateStartControl" placeholder="Start date">
+            <input matEndDate [formControl]="dateEndControl" placeholder="End date">
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+          @if (dateStartControl.invalid) {
+            <mat-error>Fecha de inicio invalida</mat-error>
+          }
+          @if (dateEndControl.invalid) {
+            <mat-error>Fecha de finalizado invalida</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button [disabled]="subsForm.invalid" class="mt-4" (click)="guardaInfo()">Enviar</button>
+    </form>
+    <div class="w-100 mx-4">
+      <img src="" alt="No sé, una imagen">
+    </div>
+  </div>
+</section>
