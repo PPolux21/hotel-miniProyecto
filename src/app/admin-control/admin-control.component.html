@@ -2,3 +2,110 @@
     <h3>Bienvenido {{nombreUsuario}}</h3>
     <button mat-flat-button (click)="logOut()" >Cerrar Sesión</button>
 </div>
+
+<div class="my-4">
+    <mat-tab-group>
+        <mat-tab label="Reservaciones">
+        @if (reserv != null) {
+        <table class="table table-striped-columns table-hover">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Habitación</th>
+                <th scope="col">Noches</th>
+                <th scope="col">Personas</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Extras</th>
+                <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (r of reserv; track r; let i = $index) {
+                <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{r.nombre}}</td>
+                    <td>{{r.tipo}}</td>
+                    <td>{{r.noches}}</td>
+                    <td>{{r.personas}}</td>
+                    <td>{{r.fecha}}</td>
+                    @if (r.extras) {
+                        <td>
+                            @if (r.extras['Desayuno']) {
+                                <p>Desayuno</p>
+                            }
+                            @if (r.extras['Acceso al spa']) {
+                                <p>Acceso al Spa</p>
+                            }
+                            @if (r.extras['Estacionamiento privado']) {
+                                <p>Estacionamiento privado</p>
+                            }
+                            @if (r.extras['Transporte al aeropuerto']) {
+                                <p>Transporte al aeropuerto</p>
+                            }
+                            @if (r.extras['Cena romántica']) {
+                                <p>Cena romántica</p>
+                            }
+                        </td>
+                    }@else {
+                        <td></td>
+                    }
+                    <td>
+                        <div class="d-flex flex-row justify-content-around">
+                            <button mat-mini-fab aria-label="Edit Button">
+                                <mat-icon>create</mat-icon>
+                            </button>
+                            <button mat-mini-fab aria-label="Delete Button">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }@else {
+        <p class="text-center mt-5 text-bold display-6">No hay información disponible de las reservaciones.</p>
+        }
+        </mat-tab>
+        <mat-tab label="Newsletter"> 
+        @if (subs != null) {
+        <table class="table table-striped-columns table-hover">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Habitación</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha Fin</th>
+                <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (s of subs; track s; let i = $index) {
+                <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{s.name}}</td>
+                    <td>{{s.email}}</td>
+                    <td>{{s.room}}</td>
+                    <td>{{s.start}}</td>
+                    <td>{{s.end}}</td>
+                    <td class="d-flex flex-row justify-content-around">
+                        <button mat-mini-fab aria-label="Edit Button">
+                            <mat-icon>create</mat-icon>
+                        </button>
+                        <button mat-mini-fab aria-label="Delete Button">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }@else {
+        <p class="text-center mt-5 text-bold display-6">No hay información disponible de las suscripciones a la newsletter.</p>
+        }
+        </mat-tab>
+    </mat-tab-group>
+</div>

@@ -103,7 +103,7 @@ export class HomeComponent {
       end:this.dateEndControl.value
     };
 
-    const existingDataString = localStorage.getItem('subs');
+    const existingDataString = localStorage.getItem('subsReactive');
     let existingData: any[] = [];
     if (existingDataString) {
       try {
@@ -118,7 +118,7 @@ export class HomeComponent {
 
     existingData.push(myData);
     
-    localStorage.setItem('subs', JSON.stringify(existingData));
+    localStorage.setItem('subsReactive', JSON.stringify(existingData));
 
     Swal.fire({
       title: '¡Éxito!',

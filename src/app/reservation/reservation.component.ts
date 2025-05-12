@@ -19,7 +19,6 @@ export class ReservationComponent {
     tipo: '',
     noches: null,
     personas: 1,
-    desayuno: false,
     fecha: '',
     extras: {} as { [nombre: string]: boolean }
   };
@@ -43,6 +42,10 @@ export class ReservationComponent {
   ];
 
   constructor(public activatedRoute: ActivatedRoute){
+    for (const servicio of this.serviciosExtras) {
+      this.templateData.extras[servicio.nombre] = false;
+    }
+
     this.activatedRoute.params.subscribe(params => {
       this.opcionHabitacion = params['room'];
       if(this.opcionHabitacion == undefined){ 
@@ -54,7 +57,24 @@ export class ReservationComponent {
   }
 
   guardarTemplate() {
-    localStorage.setItem('reservacionTemplate', JSON.stringify(this.templateData));
+    let myData = this.templateData;
+
+    const existingDataString = localStorage.getItem('reservacionTemplate');
+    let existingData: any[] = [];
+    if (existingDataString) {
+      try {
+        existingData = JSON.parse(existingDataString);
+        if (!Array.isArray(existingData)) {
+          existingData = [];
+        }
+      } catch {
+        existingData = [];
+      }
+    }
+
+    existingData.push(myData);
+
+    localStorage.setItem('reservacionTemplate', JSON.stringify(existingData));
     Swal.fire('¡Reservación registrada!', 'Los datos se guardaron correctamente', 'success');
   }
 
