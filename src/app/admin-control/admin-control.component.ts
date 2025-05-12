@@ -5,10 +5,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
+import { FormsModule } from '@angular/forms';
+import { Room } from '../model/rooms';
+import { RoomsServiceService } from '../services/rooms-service.service';
 
 @Component({
   selector: 'app-admin-control',
-  imports: [MatButtonModule, SweetAlert2Module, MatTabsModule, MatIconModule],
+  imports: [MatButtonModule, SweetAlert2Module, MatTabsModule, MatIconModule, FormsModule],
   templateUrl: './admin-control.component.html',
   styleUrl: './admin-control.component.css'
 })
@@ -20,8 +23,12 @@ export class AdminControlComponent {
 
   reserv;
   subs;
+  editAux!:any;
+  editNum:any | null = null;
+  editTable:any | null = null;
+  habitaciones!: Room[];
 
-  constructor(public activatedRoute: ActivatedRoute, private router: Router){
+  constructor(public activatedRoute: ActivatedRoute, private router: Router, public roomservice: RoomsServiceService){
     this.activatedRoute.parent?.params.subscribe(params => {
       this.userString = params['user'];
       this.userIndex = parseInt(this.userString.replace(/\D/g, ''), 10);
@@ -38,6 +45,10 @@ export class AdminControlComponent {
     if(this.subs){
       this.subs = JSON.parse(this.subs);
     }
+  }
+
+  ngOnInit(){
+    this.habitaciones = this.roomservice.getRooms();
   }
 
   logOut(){
@@ -57,6 +68,62 @@ export class AdminControlComponent {
           confirmButtonText: "Aceptar"
         });
         this.router.navigate(['/home']);
+      }
+    });
+  }
+
+  editReserv(i:number,table:number){
+    this.editTable = table;
+    this.editNum = i;
+    if(table == 0){
+      this.editAux = this.reserv[i];
+    }else{
+      this.editAux = this.subs[i];
+    }
+  }
+
+  cancelReserv(){
+    this.editTable = null;
+    this.editNum = null;
+  }
+
+  saveReserv(i:number,table:number){
+    this.editTable = null;
+    this.editNum = null;
+    if(table == 0){
+      this.reserv[i] = this.editAux; 
+      localStorage.setItem('reservacionTemplate', JSON.stringify(this.reserv));
+    }else{
+      this.subs[i] = this.editAux; 
+      localStorage.setItem('subsReactive', JSON.stringify(this.subs));
+    }
+  } 
+
+  deleteReserv(i:number,table:number){
+    Swal.fire({
+      title: "¿Eliminar?",
+      text: "¿Seguro que desea aliminar el elemento?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar"
+    }).then((result) => {
+      if(table == 0){
+        this.reserv.splice(i,1);
+        localStorage.setItem('reservacionTemplate', JSON.stringify(this.reserv));
+      }else{
+        this.subs.splice(i,1);
+        localStorage.setItem('subsReactive', JSON.stringify(this.subs));
+      }
+      this.editTable = null;
+      this.editNum = null;
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
       }
     });
   }

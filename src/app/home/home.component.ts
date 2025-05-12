@@ -99,8 +99,8 @@ export class HomeComponent {
       name:this.nameControl.value,
       email:this.emailControl.value,
       room:this.roomsControl.value,
-      start:this.dateStartControl.value,
-      end:this.dateEndControl.value
+      start:this.dateStartControl.value.substring(0, 10),
+      end:this.dateEndControl.value.substring(0, 10)
     };
 
     const existingDataString = localStorage.getItem('subsReactive');
