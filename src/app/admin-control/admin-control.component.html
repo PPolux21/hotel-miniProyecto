@@ -11,7 +11,9 @@
 <div class="my-4">
     <mat-tab-group>
         <mat-tab label="Reservaciones">
-        @if (reserv.length  !== 0) {
+        @if (reserv == null || reserv.length  == 0) {
+        <p class="text-center mt-5 text-bold display-6">No hay información disponible de las reservaciones.</p>
+        }@else {
         <table class="table table-striped-columns table-hover">
             <thead>
                 <tr>
@@ -143,12 +145,12 @@
                 }
             </tbody>
         </table>
-        }@else {
-        <p class="text-center mt-5 text-bold display-6">No hay información disponible de las reservaciones.</p>
         }
         </mat-tab>
         <mat-tab label="Newsletter"> 
-        @if (subs.length !== 0) {
+        @if (subs == null || subs.length == 0) {
+        <p class="text-center mt-5 text-bold display-6">No hay información disponible de las suscripciones a la newsletter.</p>
+        }@else {
         <table class="table table-striped-columns table-hover">
             <thead>
                 <tr>
@@ -226,8 +228,6 @@
                 }
             </tbody>
         </table>
-        }@else {
-        <p class="text-center mt-5 text-bold display-6">No hay información disponible de las suscripciones a la newsletter.</p>
         }
         </mat-tab>
     </mat-tab-group>

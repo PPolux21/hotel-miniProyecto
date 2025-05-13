@@ -89,6 +89,12 @@ form {
   color: #6a4e3b;
 }
 
+.cupones-descuento h3{
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: red;
+}
+
 .cupones-container {
   display: flex;
   flex-wrap: wrap;
