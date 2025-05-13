@@ -95,13 +95,17 @@ export class HomeComponent {
   }
 
   guardaInfo(){
+    let aux1 = this.dateStartControl.value;
+    let aux2 = this.dateEndControl.value;
+
     let myData = {
       name:this.nameControl.value,
       email:this.emailControl.value,
       room:this.roomsControl.value,
-      start:this.dateStartControl.value.substring(0, 10),
-      end:this.dateEndControl.value.substring(0, 10)
+      start:aux1.toISOString().substring(0, 10),
+      end:aux2.toISOString().substring(0, 10)
     };
+
 
     const existingDataString = localStorage.getItem('subsReactive');
     let existingData: any[] = [];
