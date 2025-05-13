@@ -7,7 +7,7 @@ export const rooms: Room[] = [
         imagen: "img/Estandar King.jpg"
     },
     {
-        tipo: "Estandar Doble",
+        tipo: "Estándar Doble",
         descripcion: "Una habitación estándar con 2 camas matrimoniales ofrece comodidad para un máximo de 4 personas. Con aire acondicionado, un baño privado y comodidades básicas, es perfecta para una familia que busca comodidad y relajación.",
         imagen: "img/Estandar Doble.jpg"
     },
