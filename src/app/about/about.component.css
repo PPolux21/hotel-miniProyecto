@@ -1,5 +1,5 @@
 body{
-    background-image: url(img/fondo-prueba.jpg);
+    background-image: url('/img/fondo-prueba.jpg');
     background-position: center;
     background-size: cover;
 }
