@@ -21,9 +21,10 @@ export class AdminControlComponent {
   userIndex!: number;
   nombreUsuario: string = "";
 
-  reserv;
-  subs;
-  editAux!:any;
+  reserv:any;
+  subs:any;
+  tmpReserv!:any;
+  tmpSubs!:any;
   editNum:any | null = null;
   editTable:any | null = null;
   habitaciones!: Room[];
@@ -76,26 +77,46 @@ export class AdminControlComponent {
     this.editTable = table;
     this.editNum = i;
     if(table == 0){
-      this.editAux = this.reserv[i];
+      this.tmpReserv = this.reserv[i];
     }else{
-      this.editAux = this.subs[i];
+      this.tmpSubs = this.subs[i];
     }
   }
 
-  cancelReserv(){
+  cancelReserv(i:number,table:number){
     this.editTable = null;
     this.editNum = null;
+
+    if(table == 0){
+      this.reserv = localStorage.getItem('reservacionTemplate');
+      this.reserv = JSON.parse(this.reserv);
+    }else{
+      this.subs = localStorage.getItem('subsReactive');
+      this.subs = JSON.parse(this.subs);
+    }
+
   }
 
   saveReserv(i:number,table:number){
     this.editTable = null;
     this.editNum = null;
     if(table == 0){
-      this.reserv[i] = this.editAux; 
+      this.reserv[i] = this.tmpReserv; 
       localStorage.setItem('reservacionTemplate', JSON.stringify(this.reserv));
     }else{
-      this.subs[i] = this.editAux; 
-      localStorage.setItem('subsReactive', JSON.stringify(this.subs));
+      if ((this.tmpSubs.start == '' && this.tmpSubs.start == this.tmpSubs.end) || (this.tmpSubs.start != '' && this.tmpSubs.end != '')) {
+        this.subs[i] = this.tmpSubs; 
+        localStorage.setItem('subsReactive', JSON.stringify(this.subs));  
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: "Ambos valores de las fechas deben de estar registrados",
+          icon: "error"
+        });
+        this.subs = localStorage.getItem('subsReactive');
+        this.subs = JSON.parse(this.subs);
+      }
+      
     }
   } 
 
@@ -111,6 +132,7 @@ export class AdminControlComponent {
     }).then((result) => {
       if(table == 0){
         this.reserv.splice(i,1);
+        this.reserv = [...this.reserv];
         localStorage.setItem('reservacionTemplate', JSON.stringify(this.reserv));
       }else{
         this.subs.splice(i,1);

@@ -6,7 +6,7 @@
 <div class="my-4">
     <mat-tab-group>
         <mat-tab label="Reservaciones">
-        @if (reserv != null) {
+        @if (reserv.length  !== 0) {
         <table class="table table-striped-columns table-hover">
             <thead>
                 <tr>
@@ -22,49 +22,81 @@
             </thead>
             <tbody>
                 @for (r of reserv; track r; let i = $index) {
+                    @if (r && r.extras) {
                 <tr>
                     <td>{{i+1}}</td>
                     <td>
-                    @if ((editNum != i)) {
-                        {{r.nombre}}
+                    @if (editNum == i && editTable == 0) {
+                        <input type="text" class="form-control" [(ngModel)]="tmpReserv.nombre">
                     }@else {
-                        <input type="text" [(ngModel)]="editAux.nombre">
+                        {{r.nombre}}
                     }
                     </td>
                     <td>
-                    @if ((editNum != i)) {
-                        {{r.tipo}}
-                    }@else {
-                        <select [(ngModel)]="editAux.tipo" name="tipo" #tipo="ngModel">
+                    @if (editNum == i && editTable == 0) {
+                        <select [(ngModel)]="tmpReserv.tipo" class="form-select" name="tipo" #tipo="ngModel">
                             @for (hab of habitaciones; track hab.tipo) {
                             <option [value]="hab.tipo">{{hab.tipo}}</option>
                             }
                         </select>
+                    }@else {
+                        {{r.tipo}}
                     }
                     </td>
                     <td>
-                    @if ((editNum != i)) {
+                    @if (editNum == i && editTable == 0) {
+                        <input type="number" class="form-control" [(ngModel)]="tmpReserv.noches">
+                    }@else {
                         {{r.noches}}
-                    }@else {
-                        <input type="number" [(ngModel)]="editAux.noches">
                     }
                     </td>
                     <td>
-                    @if ((editNum != i)) {
+                    @if (editNum == i && editTable == 0) {
+                        <input type="number" class="form-control" [(ngModel)]="tmpReserv.personas">
+                    }@else {
                         {{r.personas}}
-                    }@else {
-                        <input type="number" [(ngModel)]="editAux.personas">
                     }
                     </td>
                     <td>
-                    @if ((editNum != i)) {
+                    @if (editNum == i && editTable == 0) {
+                        <input type="date" class="form-control" [(ngModel)]="tmpReserv.fecha">
+                    }@else {
                         {{r.fecha}}
-                    }@else {
-                        <input type="date" [(ngModel)]="editAux.fecha">
                     }
                     </td>
                     <td>
-                    @if ((editNum != i)) {
+                    @if (editNum == i && editTable == 0) {
+                        <div>
+                            <label>
+                                <input type="checkbox" class="form-check-input" id="Desayuno + {{i}}" [(ngModel)]="tmpReserv.extras['Desayuno']">
+                                <span class="ms-2">Desayuno</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" class="form-check-input" id="Desayuno + {{i}}" [(ngModel)]="tmpReserv.extras['Acceso al spa']">
+                                <span class="ms-2">Acceso al spa</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" class="form-check-input" id="Desayuno + {{i}}" [(ngModel)]="tmpReserv.extras['Estacionamiento privado']">
+                                <span class="ms-2">Estacionamiento privado</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" class="form-check-input" id="Desayuno + {{i}}" [(ngModel)]="tmpReserv.extras['Transporte al aeropuerto']">
+                                <span class="ms-2">Transporte al aeropuerto</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" class="form-check-input" id="Desayuno + {{i}}" [(ngModel)]="tmpReserv.extras['Cena romántica']">
+                                <span class="ms-2">Cena romántica</span>
+                            </label>
+                        </div>
+                    }@else {
                         @if (r.extras['Desayuno']) {
                             <p>Desayuno</p>
                         }
@@ -80,42 +112,21 @@
                         @if (r.extras['Cena romántica']) {
                             <p>Cena romántica</p>
                         }
-                    }@else {
-                        <label>
-                            <input type="checkbox" id="Desayuno + {{i}}" [(ngModel)]="editAux.extras['Desayuno']">
-                            <span class="ms-2">Desayuno</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" id="Desayuno + {{i}}" [(ngModel)]="editAux.extras['Acceso al spa']">
-                            <span class="ms-2">Acceso al spa</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" id="Desayuno + {{i}}" [(ngModel)]="editAux.extras['Estacionamiento privado']">
-                            <span class="ms-2">Estacionamiento privado</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" id="Desayuno + {{i}}" [(ngModel)]="editAux.extras['Transporte al aeropuerto']">
-                            <span class="ms-2">Transporte al aeropuerto</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" id="Desayuno + {{i}}" [(ngModel)]="editAux.extras['Cena romántica']">
-                            <span class="ms-2">Cena romántica</span>
-                        </label>
                     }
                     </td>
                     <td>
                         <div class="d-flex flex-row justify-content-around">
-                            @if (editNum !== i) {
-                            <button mat-mini-fab aria-label="Edit Button" (click)="editReserv(i,0)">
-                                <mat-icon>create</mat-icon>
-                            </button>
+                            @if (editNum == i && editTable == 0) {
+                                <button mat-mini-fab aria-label="Save Button" (click)="saveReserv(i,0)">
+                                    <mat-icon>save</mat-icon>
+                                </button>
+                                <button mat-mini-fab aria-label="Cencel Button" (click)="cancelReserv(i,0)">
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
                             }@else {
-                            <button mat-mini-fab aria-label="Save Button" (click)="saveReserv(i,0)">
-                                <mat-icon>save</mat-icon>
-                            </button>
-                            <button mat-mini-fab aria-label="Cencel Button" (click)="cancelReserv()">
-                                <mat-icon>cancel</mat-icon>
-                            </button>
+                                <button mat-mini-fab aria-label="Edit Button" (click)="editReserv(i,0)">
+                                    <mat-icon>create</mat-icon>
+                                </button>
                             }
                             <button mat-mini-fab aria-label="Delete Button" (click)="deleteReserv(i,0)">
                                 <mat-icon>delete</mat-icon>
@@ -123,6 +134,7 @@
                         </div>
                     </td>
                 </tr>
+                    }
                 }
             </tbody>
         </table>
@@ -131,7 +143,7 @@
         }
         </mat-tab>
         <mat-tab label="Newsletter"> 
-        @if (subs != null) {
+        @if (subs.length !== 0) {
         <table class="table table-striped-columns table-hover">
             <thead>
                 <tr>
@@ -148,18 +160,62 @@
                 @for (s of subs; track s; let i = $index) {
                 <tr>
                     <td>{{i+1}}</td>
-                    <td>{{s.name}}</td>
-                    <td>{{s.email}}</td>
-                    <td>{{s.room}}</td>
-                    <td>{{s.start}}</td>
-                    <td>{{s.end}}</td>
+                    <td>                        
+                    @if (editNum == i && editTable == 1) {
+                        <input type="text" class="form-control" [(ngModel)]="tmpSubs.name">
+                    }@else {
+                        {{s.name}}
+                    }
+                    </td>
+                    <td>
+                    @if (editNum == i && editTable == 1) {
+                        <input type="text" class="form-control" [(ngModel)]="tmpSubs.email">
+                    }@else {
+                        {{s.email}}
+                    }
+                    </td>
+                    <td>
+                    @if (editNum == i && editTable == 1) {
+                        <select [(ngModel)]="tmpSubs.room" name="tipo" class="form-select" #tipo="ngModel">
+                            <option value="">Ninguna Habitación</option>
+                            @for (hab of habitaciones; track hab.tipo) {
+                            <option [value]="hab.tipo">{{hab.tipo}}</option>
+                            }
+                        </select>
+                    }@else {
+                        {{s.room}}
+                    }
+                    </td>
+                    <td>
+                    @if (editNum == i && editTable == 1) {
+                        <input type="date" class="form-control" [(ngModel)]="tmpSubs.start">
+                    }@else {
+                        {{s.start}}
+                    }
+                    </td>
+                    <td>
+                    @if (editNum == i && editTable == 1) {
+                        <input type="date" class="form-control" [(ngModel)]="tmpSubs.end">
+                    }@else { 
+                        {{s.end}}
+                    }
+                    </td>
                     <td class="d-flex flex-row justify-content-around">
-                        <button mat-mini-fab aria-label="Edit Button">
-                            <mat-icon>create</mat-icon>
-                        </button>
-                        <button mat-mini-fab aria-label="Delete Button">
-                            <mat-icon>delete</mat-icon>
-                        </button>
+                        @if (editNum == i && editTable == 1) {
+                                <button mat-mini-fab aria-label="Save Button" (click)="saveReserv(i,1)">
+                                    <mat-icon>save</mat-icon>
+                                </button>
+                                <button mat-mini-fab aria-label="Cencel Button" (click)="cancelReserv(i,1)">
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                            }@else {
+                                <button mat-mini-fab aria-label="Edit Button" (click)="editReserv(i,1)">
+                                    <mat-icon>create</mat-icon>
+                                </button>
+                            }
+                            <button mat-mini-fab aria-label="Delete Button" (click)="deleteReserv(i,1)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
                     </td>
                 </tr>
                 }
