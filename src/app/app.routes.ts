@@ -12,6 +12,7 @@ import { AdminControlComponent } from './admin-control/admin-control.component';
 import { SaucersComponent } from './saucers/saucers.component';
 
 export const routes: Routes = [
+    {path: '', redirectTo: 'home', pathMatch: 'full' },
     {path: '', component: UserLayoutComponent, children: [
         {path: 'home', component: HomeComponent},
         {path: 'rooms', component: RoomsComponent},
@@ -23,6 +24,7 @@ export const routes: Routes = [
         {path: 'reservation/:room', component: ReservationComponent},
         {path: 'saucer', component: SaucersComponent}
     ]},
+    {path: ':user', redirectTo: ':user/home', pathMatch: 'full'},
     {path: ':user', component: AdminLayoutComponent, children: [
         {path: 'home', component: HomeComponent},
         {path: 'rooms', component: RoomsComponent},
@@ -33,7 +35,6 @@ export const routes: Routes = [
         {path: 'reservation', component: ReservationComponent},
         {path: 'reservation/:room', component: ReservationComponent},
         {path: 'saucer', component: SaucersComponent}
-        // {path: '**', redirectTo: 'home'}
     ]},
     {path: '**', redirectTo: 'home'}
 ];
