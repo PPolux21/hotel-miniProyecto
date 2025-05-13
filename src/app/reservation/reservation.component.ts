@@ -32,13 +32,13 @@ export class ReservationComponent {
   ];
 
   tiposHabitacion = [
-    { nombre: 'Estándar King', precio: 500, imagen: '/img/Estandar King.jpg' },
-    { nombre: 'Estándar Doble', precio: 800, imagen: '/img/Estandar Doble.jpg' },
-    { nombre: 'Estándar King con Terraza', precio: 1500, imagen: '/img/Estandar King con Terraza.jpg' },
-    { nombre: 'Estándar Doble con Terraza', precio: 1000, imagen: '/img/Estandar Doble con Terraza.jpg' },
-    { nombre: 'King vista al mar', precio: 2000, imagen: '/img/King Vista al Mar.jpg' },
-    { nombre: 'Doble vista al mar', precio: 3500, imagen: '/img/Doble vista al mar.jpg' },
-    { nombre: 'Golden Vista Frontal al Mar', precio: 4000, imagen: '/img/Golden Vista Frontal al Mar.jpg' }
+    { nombre: 'Estándar King', precio: 500, imagen: 'img/Estandar King.jpg' },
+    { nombre: 'Estándar Doble', precio: 800, imagen: 'img/Estandar Doble.jpg' },
+    { nombre: 'Estándar King con Terraza', precio: 1500, imagen: 'img/Estandar King con Terraza.jpg' },
+    { nombre: 'Estándar Doble con Terraza', precio: 1000, imagen: 'img/Estandar Doble con Terraza.jpg' },
+    { nombre: 'King vista al mar', precio: 2000, imagen: 'img/King Vista al Mar.jpg' },
+    { nombre: 'Doble vista al mar', precio: 3500, imagen: 'img/Doble vista al mar.jpg' },
+    { nombre: 'Golden Vista Frontal al Mar', precio: 4000, imagen: 'img/Golden Vista Frontal al Mar.jpg' }
   ];
 
   constructor(public activatedRoute: ActivatedRoute){
