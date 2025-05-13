@@ -16,7 +16,7 @@ export class GastronomyComponent {
   usuario: string = "";
 
   constructor(private restaurantService: RestaurantServiceService, public activeRoute: ActivatedRoute){
-    this.restaurants = restaurantService.getRestaurants();
+    this.restaurants = this.restaurantService.getRestaurants();
     this.activeRoute.params.subscribe(params => {
       this.usuario = params['user'];
     });

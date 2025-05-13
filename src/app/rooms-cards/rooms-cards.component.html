@@ -1,1 +1,43 @@
-<p>rooms-cards works!</p>
+ <div class="card-group row row-cols-1 row-cols-lg-3 g-4 mt-2 animate__animated animate__backInDown ">
+    @if (searchString !== "") {
+        @if (index.length !== 0) {
+            @for (i of index; track i; let j = $index) {
+                <div class="col">
+                    <mat-card class="card h-100 light-theme" appearance="outlined">
+                    <img mat-card-image [src]="rooms[i].imagen" class="card-img-top" alt="{{rooms[i].tipo}}">
+                    <mat-card-header>
+                        <mat-card-title class="card-title text-bold"><strong>{{rooms[i].tipo}}</strong></mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content style="flex: 1 1 auto;">
+                        <p class="card-text">{{rooms[i].descripcion}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <a mat-flat-button class="reserv-button" [routerLink]="getRoutes('reservation', j)">Reservar</a>
+                        <!-- <a mat-flat-button class="reserv-button" [routerLink]="['/reservation', i]">Reservar</a> -->
+                    </mat-card-actions>
+                    </mat-card>        
+                </div>
+            }
+        }@else {
+            <h2>No hay elementos que coincidan con tu búsqueda</h2>
+        }
+    }@else {
+        @for (room of rooms; track room; let i = $index) {
+            <div class="col">
+                <mat-card class="card h-100 light-theme" appearance="outlined">
+                <img mat-card-image [src]="room.imagen" class="card-img-top" alt="{{room.tipo}}">
+                <mat-card-header>
+                    <mat-card-title class="card-title text-bold"><strong>{{room.tipo}}</strong></mat-card-title>
+                </mat-card-header>
+                <mat-card-content style="flex: 1 1 auto;">
+                    <p class="card-text">{{room.descripcion}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <a mat-flat-button class="reserv-button" [routerLink]="getRoutes('reservation', i)">Reservar</a>
+                    <!-- <a mat-flat-button class="reserv-button" [routerLink]="['/reservation', i]">Reservar</a> -->
+                </mat-card-actions>
+                </mat-card>        
+            </div>
+        }
+    }
+  </div>

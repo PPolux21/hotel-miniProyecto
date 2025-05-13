@@ -4,7 +4,7 @@ export const admins: Admins[] = [
     {
         email: "jose_luis@tresvagos.com",
         password: "wenas",
-        username: "Forza",
+        username: "PPólux_21",
         image: "img/joseLuis-1.jpg"
     },
     {
@@ -16,7 +16,7 @@ export const admins: Admins[] = [
     {
         email: "brandon@tresvagos.com",
         password: "wenas",
-        username: "MikuEnjoyer",
+        username: "Coffee Enjoyer",
         image: "img/brandon-1.jpg"
     }
 ]

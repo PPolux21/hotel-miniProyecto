@@ -30,4 +30,78 @@
     padding: 0 10px;
     margin: 0;
 }
+
+
+.presentacion {
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-fondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.texto-cuadro {
+  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  font-family: 'Playfair Display', serif;
+}
+
+.tabla-horarios {
+  padding: 2rem;
+  background: linear-gradient(to right, #fdfcfb, #e2d1c3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tabla-horarios table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffffcc;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-horarios th,
+.tabla-horarios td {
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid #ddd;
+}
+
+.tabla-horarios th {
+  background-color: #c5a880;
+  color: #fff;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.tabla-horarios td {
+  font-size: 1rem;
+  color: #333;
+}
+
+.tabla-horarios tr:nth-child(even) td {
+  background-color: #f9f6f2;
+}
+
+.tabla-horarios h2 {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #5a4c3c;
+  background-color: #fff8ee;
+  padding: 1rem;
+  border-left: 5px solid #c5a880;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
   

@@ -1,5 +1,20 @@
-<body>
-<div class="contenedor-reservacion">
+<section class="presentacion position-relative">
+  <img src="img/fondo-reservacion.jpg" class="video-fondo">
+
+  <div class="texto-cuadro position-absolute top-50 start-50 translate-middle p-5 rounded-4 text-white">
+    <h2 class="mb-4 display-5 fw-bold animate__animated animate__lightSpeedInLeft" style="color: gold;">
+      Reserva Con Nosotros
+    </h2>
+    <p class="fs-5 mb-0 animate__animated animate__rotateInUpRight">
+      No hay necesidad de ir mas lejos a lugares super caros o que no te ofrecen la calidad que nosotros te ofrecemos
+      estamos mas que contentos de recibirte con los brazos abiertos en nuestro maravilloso hotel de lujo
+      y no necesitas ir a ninguna agencia, !!haz tu reservacion desde aqui en nuestra pagina web ya!!
+    </p>
+  </div>
+</section>
+
+<section class="seccion-form">
+  <div class="contenedor-reservacion">
   <h2>Formulario de reservación</h2>
   <div class="contenido">
     <form #formTemplate="ngForm" (ngSubmit)="guardarTemplate()" novalidate class="p-4 bg-light rounded">
@@ -73,5 +88,21 @@
         }
   </div>
  </div>
-</body>
 
+</section>
+
+
+<section class="cupones-descuento">
+  <h2>Cupones exclusivos para ti</h2>
+  <div class="cupones-container">
+    @for (cupon of cupones; track cupon.id) {
+      <div class="cupon">
+        <h3>{{ cupon.titulo }}</h3>
+        <p class="codigo" id="{{ cupon.id }}">{{ cupon.codigo }}</p>
+        <button (click)="copiarAlPortapapeles(cupon.id)">Copiar código</button>
+      </div>
+    }
+  </div>
+  <h2 style="font-size: 30px;">los cupones solo podran utilizarse una vez hayas hecho tu reservacion y se entregan personalmente a los empleados</h2>
+  <h2 style="font-size: 30px;">Los cupones cambian periodicamente</h2>
+</section>
